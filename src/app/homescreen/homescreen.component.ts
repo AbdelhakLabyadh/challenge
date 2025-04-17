@@ -19,8 +19,6 @@ export class HomescreenComponent implements OnInit {
   getAllAnimals(): void{
     this.petService.getAllPets().subscribe((pets:any) => {
       this.cards = pets.items
-      console.log("pets: ", this.cards.length)
-      console.log("reloaded")
     return this.cards
     });
   }
