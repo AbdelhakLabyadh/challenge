@@ -1,5 +1,5 @@
 import { animalCard } from './../animal';
-import { Component , inject, OnInit} from '@angular/core';
+import { Component, inject, signal} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardComponent } from "../card/card.component";
 import { PetService } from '../pets/pet.service';
@@ -10,19 +10,15 @@ import { PetService } from '../pets/pet.service';
   templateUrl: './detailsscreen.component.html',
 })
 
-export class DetailsscreenComponent implements OnInit {
-  route:ActivatedRoute =inject(ActivatedRoute)
-  animalId:number = 0 
-  animal?:animalCard;
+export class DetailsscreenComponent {
+  private route:ActivatedRoute = inject(ActivatedRoute)
+  private petService = inject(PetService)
+  petIdSignal = signal<number>(Number(this.route.snapshot.params['id'])) 
+  petSignal = signal<animalCard>({id:'', name:'', type:'', avatar:''})
 
-  constructor(private petService:PetService){
-    this.animalId=Number(this.route.snapshot.params['id'])
+  constructor(){
+    this.petService.getPetByID(this.petIdSignal()).subscribe((pet:animalCard|undefined)=>{
+      this.petSignal.set(pet ?? {id:'', name:'', type:'', avatar:''}) 
+    })
   } 
-
-  ngOnInit(): void {
-      this.petService.getPetByID(this.animalId).subscribe((pet:animalCard|undefined)=>{
-         this.animal = pet 
-      })
-  }
-} 
-
+}

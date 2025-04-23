@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { animalCard } from './../animal';
@@ -8,19 +8,13 @@ import { animalCard } from './../animal';
   templateUrl: './card.component.html',
   imports: [NgClass]
 })
-export class CardComponent implements OnInit{
+export class CardComponent {
   route =inject(ActivatedRoute)
   
-
- 
 @Input() item? : animalCard;
 @Input() isDetailsScreen: boolean = false;
  
 constructor(){};
-
-ngOnInit(): void {
-  
-}
 
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { NgFor, CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PetService } from '../pets/pet.service';
