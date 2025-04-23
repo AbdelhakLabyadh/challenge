@@ -1,12 +1,12 @@
 <div class="rounded-xl shadow-xl">
-   <img [ngClass]="isDetails ? 'h-45': 'h-50'" class="w-screen rounded-t-xl object-fill" [src]="item?.avatar">
-   <div [ngClass]="isDetails ? 'h-screen': 'auto'" class="p-6">
+   <img [ngClass]="isDetailsScreen ? 'h-45': 'h-50'" class="w-full rounded-t-xl object-fill" [src]="item?.avatar">
+   <div [ngClass]="isDetailsScreen ? 'h-screen': 'auto'" class="p-6">
    <div class="flex flex-row">
-<p [ngClass]="isDetails ? 'text-3xl': 'text-xl'" class="text-[#081F32]">
+<p [ngClass]="isDetailsScreen ? 'text-3xl': 'text-xl'" class="text-[#081F32]">
   {{item?.name}}
 </p>
    </div>
-<p [ngClass]="isDetails ? 'text-xl': 'text-lg'" class=" pt-6 text-[#6E798C]">
+<p [ngClass]="isDetailsScreen ? 'text-xl': 'text-lg'" class=" pt-6 text-[#6E798C]">
   {{item?.type}}
 </p>
    </div>

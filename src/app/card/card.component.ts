@@ -10,18 +10,16 @@ import { animalCard } from './../animal';
 })
 export class CardComponent implements OnInit{
   route =inject(ActivatedRoute)
-  isDetails: boolean = false
+  
 
  
-@Input() 
-item? : animalCard;
+@Input() item? : animalCard;
+@Input() isDetailsScreen: boolean = false;
  
 constructor(){};
 
 ngOnInit(): void {
-  this.route.data.subscribe((data:any)=>{
-    return this.isDetails= data.isDetailsScreen
-  })
+  
 }
 
 }

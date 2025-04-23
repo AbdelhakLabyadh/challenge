@@ -4,6 +4,5 @@ import { DetailsscreenComponent } from './detailsscreen/detailsscreen.component'
 
 export const routes: Routes = [
     {path:'', component: HomescreenComponent, title:'Home Screen'},
-    {path:'one-pet/:id', component: DetailsscreenComponent, title:'Details Screen', data: {isDetailsScreen:true}},
-
+    {path:'one-pet/:id', component: DetailsscreenComponent, title:'Details Screen'},
 ];
