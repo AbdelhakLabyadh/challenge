@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { NgFor, CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PetService } from '../pets/pet.service';
@@ -11,21 +11,23 @@ import { CardComponent } from "../card/card.component";
   templateUrl: './homescreen.component.html',
 })
 
-export class HomescreenComponent implements OnInit {
-  cards :animalCard[]=[]
-  constructor( private petService:PetService){
+export class HomescreenComponent {
+  private allPetsSignal = signal<animalCard[]>([])
+  private petService=inject(PetService)
+
+  cards = computed(()=> this.allPetsSignal())
+
+  constructor() {
+    this.getAllAnimals()
   } 
 
   getAllAnimals(): void{
     this.petService.getAllPets().subscribe((pets:any) => {
-      this.cards = pets.items
-    return this.cards
+      this.allPetsSignal.set(pets.items ?? [])
     });
   }
 
- ngOnInit(): void {
-  this.getAllAnimals()
-    } 
+
 reloadData(){
    this.getAllAnimals()
 }
