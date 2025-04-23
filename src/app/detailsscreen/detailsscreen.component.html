@@ -1,3 +1,4 @@
 <div class="justify-center items-center p-10 pt-40">    
-    <app-card [item]="animal" ></app-card> 
-</div>
+   @if(animal) {<app-card [isDetailsScreen]="true" [item]="animal" ></app-card> }
+   @else {<h3>Animal not found</h3>}
+</div> 

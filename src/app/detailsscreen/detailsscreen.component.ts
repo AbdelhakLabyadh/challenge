@@ -13,15 +13,15 @@ import { PetService } from '../pets/pet.service';
 export class DetailsscreenComponent implements OnInit {
   route:ActivatedRoute =inject(ActivatedRoute)
   animalId:number = 0 
-  animal:animalCard = {id:"", name:"",avatar:"",type:""}
+  animal?:animalCard;
 
   constructor(private petService:PetService){
     this.animalId=Number(this.route.snapshot.params['id'])
-  }
+  } 
 
   ngOnInit(): void {
       this.petService.getPetByID(this.animalId).subscribe((pet:animalCard|undefined)=>{
-        return this.animal = pet !== undefined ? pet : {id:"", name:"",avatar:"",type:""}
+         this.animal = pet 
       })
   }
 } 
